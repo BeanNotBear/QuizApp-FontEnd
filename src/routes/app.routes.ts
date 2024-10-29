@@ -4,6 +4,7 @@ import {SettingComponent} from "../views/setting/setting.component";
 import {NotfoundComponent} from "../views/notfound/notfound.component";
 import {LoginComponent} from "../views/login/login.component";
 import {RegisterComponent} from "../views/register/register.component";
+import {QuizzesComponent} from "../views/quizzes/quizzes.component";
 
 export const routes: Routes = [
   {
@@ -21,6 +22,14 @@ export const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'quiz',
+    component: QuizzesComponent
+  },
+  {
+    path: '',
+    component: HomeComponent
   },
   {
     path: '**',

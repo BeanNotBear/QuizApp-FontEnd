@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import Swal from 'sweetalert2'
 import {ApiService} from "../api/authapi.service";
 import {LoginModel} from "../models/login.model";
@@ -101,5 +100,4 @@ export class AuthService {
       }
     )
   }
-
 }
