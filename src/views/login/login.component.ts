@@ -19,9 +19,6 @@ import {RouterLink} from "@angular/router";
 })
 export class LoginComponent {
   constructor(private authService: AuthService) {
-    if(authService.isLoggedIn()) {
-      location.href = "home";
-    }
   }
 
   login: LoginModel = new class implements LoginModel {

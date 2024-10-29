@@ -5,6 +5,8 @@ import {NotfoundComponent} from "../views/notfound/notfound.component";
 import {LoginComponent} from "../views/login/login.component";
 import {RegisterComponent} from "../views/register/register.component";
 import {QuizzesComponent} from "../views/quizzes/quizzes.component";
+import {authGuard} from "../guards/auth.guard";
+import {deniedGuard} from "../guards/denied.guard";
 
 export const routes: Routes = [
   {
@@ -13,11 +15,13 @@ export const routes: Routes = [
   },
   {
     path: 'setting',
-    component: SettingComponent
+    component: SettingComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [deniedGuard]
   },
   {
     path: 'register',
@@ -25,7 +29,8 @@ export const routes: Routes = [
   },
   {
     path: 'quiz',
-    component: QuizzesComponent
+    component: QuizzesComponent,
+    canActivate: [authGuard]
   },
   {
     path: '',

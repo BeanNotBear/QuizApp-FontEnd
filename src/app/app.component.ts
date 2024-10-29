@@ -4,11 +4,12 @@ import {LoginComponent} from "../views/login/login.component";
 import {HeaderComponent} from "../layout/header/header.component";
 import {FooterComponent} from "../layout/footer/footer.component";
 import {AuthService} from "../services/auth.service";
+import {LoaderComponent} from "../views/loader/loader.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LoginComponent, HeaderComponent, FooterComponent],
+  imports: [RouterOutlet, LoginComponent, HeaderComponent, FooterComponent, LoaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

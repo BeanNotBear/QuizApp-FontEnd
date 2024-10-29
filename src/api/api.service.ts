@@ -18,7 +18,6 @@ export class ApiService {
   }
 
   getQuizes(): Observable<QuizModel[]> {
-
     return this.httpClient.get<QuizModel[]>(`${this.baseUrl}/Quizes`, this.httpOptions);
   }
 }
