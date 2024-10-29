@@ -1,0 +1,18 @@
+<header class="main-header">
+  <div class="logo">
+    <a routerLink="home"><h3>Logo</h3></a>
+  </div>
+  <nav>
+    <ul class="nav-links">
+      <li><a routerLink="home">Home</a></li>
+      <!-- Using @if directive for conditional rendering -->
+      @if (isLogined) {
+        <li><a routerLink="setting">Setting</a></li>
+        <li><a (click)="onLogout()">Logout</a></li>
+      } @else {
+        <li><a routerLink="login">Login</a></li>
+        <li><a routerLink="register">Register</a></li>
+      }
+    </ul>
+  </nav>
+</header>
