@@ -3,13 +3,14 @@ import Swal from 'sweetalert2'
 import {ApiService} from "../api/authapi.service";
 import {LoginModel} from "../models/login.model";
 import {RegisterModel} from "../models/register.model";
+import {LoaderService} from "./loader.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private loaderService: LoaderService) {
   }
 
   isLoggedIn(): boolean {
@@ -49,9 +50,11 @@ export class AuthService {
   }
 
   login(login: LoginModel) {
+    this.loaderService.requestStarted();
     let payload = login;
     this.apiService.login(payload).subscribe(
       response => {
+        this.loaderService.requestEnded();
         localStorage.setItem("token", response.token);
         Swal.fire({
           title: "Login successfully!",
@@ -62,6 +65,7 @@ export class AuthService {
         });
       },
       error => {
+        this.loaderService.requestEnded();
         Swal.fire({
           icon: "error",
           title: "Oops...",

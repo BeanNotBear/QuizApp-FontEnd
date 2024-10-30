@@ -25,7 +25,8 @@ export const routes: Routes = [
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
+    canActivate: [deniedGuard]
   },
   {
     path: 'quiz',
