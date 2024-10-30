@@ -9,7 +9,6 @@ import {LoaderService} from "./loader.service";
   providedIn: 'root'
 })
 export class AuthService {
-
   constructor(private apiService: ApiService, private loaderService: LoaderService) {
   }
 
@@ -34,19 +33,33 @@ export class AuthService {
     var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
-
     return JSON.parse(jsonPayload);
   }
 
   logout() {
-    localStorage.clear();
+    let isLogin = true;
     Swal.fire({
-      title: "Log out successfully!",
-      text: "Please click on the button!",
-      icon: "success"
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, log out now!"
     }).then((result) => {
-      location.href = "login";
+      if (result.isConfirmed) {
+        localStorage.clear();
+        isLogin = false;
+        Swal.fire({
+          title: "Log out!",
+          text: "You have successfully logged out.",
+          icon: "success"
+        }).then(result => {
+          location.reload();
+        });
+      }
     });
+    return isLogin;
   }
 
   login(login: LoginModel) {
@@ -77,8 +90,10 @@ export class AuthService {
 
   register(register: RegisterModel) {
     let payload = register;
+    this.loaderService.requestStarted();
     this.apiService.register(payload).subscribe(
       response => {
+        this.loaderService.requestEnded();
         if (response) {
           Swal.fire({
             title: "Register successfully!",
@@ -96,6 +111,7 @@ export class AuthService {
         }
       },
       error => {
+        this.loaderService.requestEnded();
         Swal.fire({
           icon: "error",
           title: "Oops...",

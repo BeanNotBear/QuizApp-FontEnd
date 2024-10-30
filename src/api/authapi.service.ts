@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {delay, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +15,10 @@ export class ApiService {
   }
 
   login(data: any): Observable<any> {
-    return this.httpClient.post<any>(this.baseUrl + "/Auth/Login", data);
+    return this.httpClient.post<any>(this.baseUrl + "/Auth/Login", data).pipe(delay(1000));
   }
 
   register(data: any): Observable<any> {
-    return this.httpClient.post<boolean>(this.baseUrl + "/Auth/Register", data);
+    return this.httpClient.post<boolean>(this.baseUrl + "/Auth/Register", data).pipe(delay(1000));
   }
 }

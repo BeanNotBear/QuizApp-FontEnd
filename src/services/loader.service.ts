@@ -10,7 +10,6 @@ export class LoaderService {
   }
 
   showLoader = new BehaviorSubject<boolean>(false);
-  private count = 0;
 
   requestStarted() {
     this.showLoader.next(true);

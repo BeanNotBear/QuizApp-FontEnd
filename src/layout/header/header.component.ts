@@ -19,8 +19,6 @@ export class HeaderComponent {
   @Input({required: true}) isLogined!: boolean;
 
   onLogout() {
-    this.isLogined = false;
-    this.authService.logout();
-
+    this.isLogined = this.authService.logout();
   }
 }

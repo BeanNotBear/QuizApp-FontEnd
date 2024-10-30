@@ -12,7 +12,7 @@ export class LoaderComponent {
   constructor(private loaderService: LoaderService) {
     this.init();
   }
-  showLoader = false;
+  showLoader!:boolean;
 
   init() {
     this.loaderService.showLoader.subscribe(status => {
