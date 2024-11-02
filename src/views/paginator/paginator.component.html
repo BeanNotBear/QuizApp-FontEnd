@@ -1,0 +1,9 @@
+<div class="paginator">
+  <nz-pagination
+    (nzPageIndexChange)="onChangePageIndex($event)"
+    (nzPageSizeChange)="onChangePageSize($event)"
+    [nzPageSizeOptions]="recordsPerPage"
+    [nzPageIndex]="paginatedResult.pageIndex"
+    [nzTotal]="paginatedResult.totalRecords"
+    nzShowSizeChanger nzPageSize="5"></nz-pagination>
+</div>

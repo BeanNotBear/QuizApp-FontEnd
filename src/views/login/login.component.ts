@@ -29,4 +29,6 @@ export class LoginComponent {
   onLogin() {
     this.authService.login(this.login);
   }
+
+  allRoutes: any[] = [];
 }

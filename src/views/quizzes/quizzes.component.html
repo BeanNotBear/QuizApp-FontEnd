@@ -1,28 +1,41 @@
-<div class="container mx-auto py-8">
-  <h1 class="text-2xl font-bold mb-4">Quizzes</h1>
+<div>
+  <app-table
+    [page]="page"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    [rows]="rows"
+  >
+    <ngvn-column header="ID" key="id">
 
-  <div class="overflow-x-auto">
-    <table class="w-full table-auto">
-      <thead>
-      <tr class="bg-gray-200">
-        <th class="px-4 py-2 text-left">ID</th>
-        <th class="px-4 py-2 text-left">Title</th>
-        <th class="px-4 py-2 text-left">Description</th>
-        <th class="px-4 py-2 text-left">Duration</th>
-        <th class="px-4 py-2 text-left">Active</th>
-      </tr>
-      </thead>
-      <tbody>
-        @for (quiz of quizzes; track quiz) {
-          <tr class="border-b">
-            <td class="px-4 py-2">{{ quiz.id }}</td>
-            <td class="px-4 py-2">{{ quiz.title }}</td>
-            <td class="px-4 py-2">{{ quiz.description }}</td>
-            <td class="px-4 py-2">{{ quiz.duration }} minutes</td>
-            <td class="px-4 py-2">{{ quiz.isActive ? 'Yes' : 'No' }}</td>
-          </tr>
+    </ngvn-column>
+    <ngvn-column header="Title" key="title">
+    </ngvn-column>
+    <ngvn-column header="Status" key="isActive">
+      <ng-template appCell let-row>
+        @if (row.isActive) {
+          Active
+        } @else {
+          Inactive
         }
-      </tbody>
-    </table>
-  </div>
+      </ng-template>
+    </ngvn-column>
+    <ngvn-column header="Duration" key="duration">
+      <ng-template appHeader>
+        Duration (Minutes)
+      </ng-template>
+    </ngvn-column>
+    <ngvn-column header="Description" key="description"></ngvn-column>
+    <ngvn-column header="Action">
+      <ng-template appCell let-row>
+        <a [href]="row.id">
+          <i class='bx bx-detail' ></i>
+        </a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a [href]="row.id"><i class='bx bx-edit'></i></a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a [href]="row.id"><i class='bx bx-trash'></i></a>
+      </ng-template>
+    </ngvn-column>
+  </app-table>
 </div>
+

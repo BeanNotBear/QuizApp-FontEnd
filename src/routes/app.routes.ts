@@ -8,6 +8,7 @@ import {QuizzesComponent} from "../views/quizzes/quizzes.component";
 import {authGuard} from "../guards/auth.guard";
 import {deniedGuard} from "../guards/denied.guard";
 import {roleGuard} from "../guards/role.guard";
+import {QuizFetcherComponent} from "../views/quiz-fetcher/quiz-fetcher.component";
 
 export const routes: Routes = [
   {
@@ -37,10 +38,22 @@ export const routes: Routes = [
     canActivate: [deniedGuard]
   },
   {
-    path: 'quiz',
-    title: 'Quiz Page',
+    path: 'manage/quizzes',
+    title: 'Manage Quizzes',
     component: QuizzesComponent,
-    canActivate: [authGuard]
+    canActivate: [authGuard, roleGuard],
+    data: {
+      roles: ['ADMIN']
+    }
+  },
+  {
+    path: 'quizzes',
+    title: 'Quizzes',
+    component: QuizFetcherComponent,
+    canActivate: [authGuard, roleGuard],
+    data: {
+      roles: ['STUDENT']
+    }
   },
   {
     path: '',

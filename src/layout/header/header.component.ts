@@ -18,6 +18,10 @@ export class HeaderComponent {
 
   @Input({required: true}) isLogined!: boolean;
 
+  get getRole() {
+    return this.authService.parseJwt(localStorage.getItem('token') ?? '').role;
+  }
+
   onLogout() {
     this.isLogined = this.authService.logout();
   }

@@ -1,0 +1,33 @@
+<nz-table #table [nzData]="rows" [nzPageSize]="pageSize" [nzPageSizeOptions]="pageSizeOptions" nzShowSizeChanger>
+  <thead>
+  <tr>
+    @for (column of columns; track column) {
+      @if(!column.templateHeader) {
+        <th>{{ column.header }}</th>
+      } @else {
+        <th>
+          <ng-container *ngTemplateOutlet="column.templateHeader.template"></ng-container>
+        </th>
+      }
+    }
+  </tr>
+  </thead>
+  <tbody>
+    @for (data of table.data; track data) {
+      <tr>
+        @for (column of columns; track column) {
+          @if(!column.templateCell) {
+            <td>{{ data[column.key] }}</td>
+          } @else {
+            <td>
+              <ng-container *ngTemplateOutlet="column.templateCell.template; context: { $implicit: data }"></ng-container>
+            </td>
+          }
+        }
+      </tr>
+    }
+  </tbody>
+</nz-table>
+
+
+

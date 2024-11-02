@@ -1,0 +1,54 @@
+<div class="filter-bar">
+  <div class="filter-item">
+    <label for="searchByTitle">Search By Title</label>
+    <div class="input-wrapper">
+      <input type="text" id="searchByTitle" placeholder="Enter quiz title" [(ngModel)]="quizParam.SearchByTitle">
+      <button class="search-button" aria-label="Search" (click)="onFilter()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="filter-item">
+    <label for="isActive">Active Status</label>
+    <select id="isActive" (change)="onFilter()" [(ngModel)]="quizParam.IsActive">
+      <option value="null">All Statuses</option>
+      <option value="true">Active</option>
+      <option value="false">Inactive</option>
+    </select>
+  </div>
+
+  <div class="filter-item">
+    <label for="duration">Duration (mins)</label>
+    <div class="input-wrapper">
+      <input type="number" id="duration" placeholder="Quiz duration" [(ngModel)]="quizParam.Duration">
+      <button class="search-button" aria-label="Filter" (click)="onFilter()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="filter-item">
+    <label for="orderBy">Sort By</label>
+    <select id="orderBy" (change)="onFilter()" [(ngModel)]="quizParam.OrderBy">
+      <option value="">Default</option>
+      <option value="duration">Duration</option>
+      <option value="numberOfQuestions">Question Count</option>
+    </select>
+  </div>
+  @if (quizParam.OrderBy !== '') {
+    <div class="filter-item">
+      <label for="isDescending">Order</label>
+      <select id="isDescending" (change)="onFilter()" [(ngModel)]="quizParam.IsDescending">
+        <option value="false">Ascending</option>
+        <option value="true">Descending</option>
+      </select>
+    </div>
+  }
+</div>

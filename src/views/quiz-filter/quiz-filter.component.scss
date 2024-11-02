@@ -1,0 +1,124 @@
+// Modern Filter Bar with Search Icons
+.filter-bar {
+  $primary-color: #4a5568;
+  $accent-color: #4299e1;
+  $border-color: #e2e8f0;
+  $text-color: #2d3748;
+  $background-color: #ffffff;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 20px;
+  background-color: $background-color;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+  .filter-item {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 220px;
+
+    label {
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: $primary-color;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    input,
+    select {
+      appearance: none;
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid $border-color;
+      border-radius: 8px;
+      font-size: 15px;
+      color: $text-color;
+      transition: all 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: $accent-color;
+        box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+      }
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234a5568' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 40px;
+    }
+
+    .search-button {
+      position: absolute;
+      right: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+
+      svg {
+        width: 20px;
+        height: 20px;
+        color: $primary-color;
+        transition: color 0.3s ease;
+      }
+
+      &:hover {
+        background-color: rgba($accent-color, 0.1);
+
+        svg {
+          color: $accent-color;
+        }
+      }
+
+      &:focus {
+        outline: 2px solid rgba($accent-color, 0.3);
+      }
+    }
+  }
+
+  // Responsive Design
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+
+    .filter-item {
+      width: 100%;
+    }
+  }
+}
+
+// hide arrow in number input.
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
